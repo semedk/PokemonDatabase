@@ -1,0 +1,202 @@
+<!-- gymleaders.hbs -->
+<div id="browse" style="display: block">
+    <p><strong>Browse Gym Leaders </strong></p>
+    <table>
+
+        {{!-- Header section --}}
+        <thead>
+
+            {{!-- Print the album attributes --}}
+            <tr>
+
+                {{#each GymLeaders.[0]}}
+                <th>
+                    {{@key}}
+                </th>
+                {{/each}}
+            </tr>
+        </thead>
+
+        {{!-- Body section --}}
+        <tbody>
+            {{#each GymLeaders}}
+            <tr>
+                <td>{{this.gymleaderno}}</td>
+                <td>{{this.gymleadername}}</td>
+                <td>{{this.cityname}}</td>
+                <td>{{this.typename}}</td>
+            </tr>
+            {{/each}}
+        </tbody>
+        <thead>
+
+            {{!-- Print the album attributes --}}
+            <tr>
+
+                {{#each GymLeaders_Pokemon.[0]}}
+                <th>
+                    {{@key}}
+                </th>
+                {{/each}}
+            </tr>
+        </thead>
+
+        {{!-- Body section --}}
+        <tbody>
+            {{#each GymLeaders_Pokemon}}
+            <tr>
+                <td>{{this.gymleaderno}}</td>
+                <td>{{this.gymleadername}}</td>
+                <td>{{this.pokedex_num}}</td>
+                <td>{{this.pokname}}</td>
+                <td>{{this.levelcap}}</td>
+            </tr>
+            {{/each}}
+        </tbody>
+    </table>
+
+    {{!-- Form to add a record to the table  --}}
+    <h2>Add new Gym Leaders here</h2>
+    <p>To add a Gym Leader enter their information below and click "Submit".</p>
+    <form id="add-gl-form" method="POST" action="/add_new_gl">
+        <legend><strong>Add a Gym Leader</strong></legend>
+        <fieldset>
+            <label for="input-gl">Gym Leader Name </label>
+            <input type="text" name="input-gl" id="input-gl">
+            <label for="input-cname">City Name </label>
+            <input type="text" name="input-cname" id="input-cname">
+            <label for="input-type">Type</label>
+            <select name="input-type" id="input-type">
+                <option value="NULL"></option>
+                {{#each Types}}
+                <option value="{{this.typename}}">{{this.typename}}</option>
+                {{/each}}
+            </select>
+        </fieldset>
+        <input class="btn" type="submit" id="addgl" value="Add a Gym Leader">
+    </form>
+
+    <h2>Update a Gym Leaders here</h2>
+    <p>To update a Gym Leader enter their information below and click "Submit".</p>
+    <form id="update-gl-form" method="POST" action="/update_gl">
+        <legend><strong>Update a Gym Leader</strong></legend>
+        <fieldset>
+            <label for="update-gl">Gym Leader Name</label>
+            <select name="update-gl" id="update-gl">
+                <option value="NULL"></option>
+                {{#each GymLeaders}}
+                <option value="{{this.gymleadername}}">{{this.gymleadername}}</option>
+                {{/each}}
+            </select>
+            <label for="update-cnamen">New City Name </label>
+            <input type="text" name="update-cnamen" id="update-cnamen">
+            <label for="update-typen">New Type</label>
+            <select name="update-typen" id="update-typen">
+                <option value="NULL"></option>
+                {{#each Types}}
+                <option value="{{this.typename}}">{{this.typename}}</option>
+                {{/each}}
+            </select>
+        </fieldset>
+        <input class="btn" type="submit" id="updategl" value="Update a Gym Leader">
+    </form>
+
+    <h2>Add new Gym Leader's Pokemon here</h2>
+    <p>To add a Gym Leader's Pokemon, enter their information below and click "Submit".</p>
+    <form id="add-glp-form" method="POST" action="/add_glp_city">
+        <legend><strong>Add a Gym Leader's Pokemon</strong></legend>
+        <fieldset>
+            <label for="input-pnum">Pokemon Name </label>
+            <select name="input-pnum" id="input-pnum">
+                <option value="NULL"></option>
+                {{#each Pokemon}}
+                <option value="{{this.pokname}}">{{this.pokname}}</option>
+                {{/each}}
+            </select>
+            <label for="input-gnum">Gym Leader Name </label>
+            <select name="input-gnum" id="input-gnum">
+                <option value="NULL"></option>
+                {{#each GymLeaders}}
+                <option value="{{this.gymleadername}}">{{this.gymleadername}}</option>
+                {{/each}}
+            </select>
+            <label for="input-lcap">Level Cap</label>
+            <input type="number" name="input-lcap" id="input-lcap">
+        </fieldset>
+        <input class="btn" type="submit" id="addglp" value="Add a Gym Leader's Pokemon">
+    </form>
+
+    <h2>Update a Gym Leader's Pokemon here</h2>
+    <p>To update a Gym Leader's Pokemon, enter their information below and click "Submit".</p>
+    <form id="update-glp-form" method="POST" action="/update_glp_city">
+        <legend><strong>Update a Gym Leader's Pokemon</strong></legend>
+        <fieldset>
+            <label for="update-gnamen">Gym Leader Name </label>
+            <select name="update-gnamen" id="update-gnamen">
+                <option value="NULL"></option>
+                {{#each GymLeaders}}
+                <option value="{{this.gymleadername}}">{{this.gymleadername}}</option>
+                {{/each}}
+            </select>
+            <label for="uptext-pnameo">Old Pokemon Name </label>
+            <select name="uptext-pnameo" id="uptext-pnameo">
+                <option value="NULL"></option>
+                {{#each Pokemon}}
+                <option value="{{this.pokname}}">{{this.pokname}}</option>
+                {{/each}}
+            </select>
+            <label for="update-pnamen">New Pokemon Name </label>
+            <select name="update-pnamen" id="update-pnamen">
+                <option value="NULL"></option>
+                {{#each Pokemon}}
+                <option value="{{this.pokname}}">{{this.pokname}}</option>
+                {{/each}}
+            </select>
+            <label for="update-lcapn">New Level Cap</label>
+            <input type="number" name="update-lcapn" id="update-lcapn">
+        </fieldset>
+        <input class="btn" type="submit" id="updateglp" value="Update a Gym Leader's Pokemon">
+    </form>
+
+    <h2>Delete a Gym Leaders here</h2>
+    <p>To delete a Gym Leader enter their information below and click "Submit".</p>
+    <form id="del-gl-form" method="POST" action="/del_gl">
+        <legend><strong>Delete a Gym Leader</strong></legend>
+        <fieldset>
+            <label for="del-gl">Gym Leader Name </label>
+            <select name="del-gl" id="del-gl">
+                <option value="NULL"></option>
+                {{#each GymLeaders}}
+                <option value="{{this.gymleadername}}">{{this.gymleadername}}</option>
+                {{/each}}
+            </select>
+        </fieldset>
+        <input class="btn" type="submit" id="delgl" value="Delete a Gym Leader">
+    </form>
+
+
+    <h2>Delete a Gym Leader's Pokemon here</h2>
+    <p>To add a Gym Leader's Pokemon, enter their information below and click "Submit".</p>
+    <form id="delete-glp-form" method="POST" action="/delete_glp_city">
+        <legend><strong>Delete a Gym Leader's Pokemon</strong></legend>
+        <fieldset>
+            <label for="delete-gname">Gym Leader Name </label>
+            <select name="delete-gname" id="delete-gname">
+                <option value="NULL"></option>
+                {{#each GymLeaders}}
+                <option value="{{this.gymleadername}}">{{this.gymleadername}}</option>
+                {{/each}}
+            </select>
+            <label for="delete-pname">Pokemon Name </label>
+            <select name="delete-pname" id="delete-pname">
+                <option value="NULL"></option>
+                {{#each Pokemon}}
+                <option value="{{this.pokname}}">{{this.pokname}}</option>
+                {{/each}}
+            </select>
+        </fieldset>
+        <input class="btn" type="submit" id="addglp" value="Delete a Gym Leader's Pokemon">
+    </form>
+
+
+

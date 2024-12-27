@@ -1,0 +1,81 @@
+<!-- cities.hbs -->
+
+<div id="browse" style="display: block">
+<p><strong>Browse Cities</strong></p>
+<table>
+
+    {{!-- Header section --}}
+    <thead>
+
+        {{!-- Print the album attributes --}}
+        <tr>
+
+            {{#each Cities.[0]}}
+            <th>
+                {{@key}}
+            </th>
+            {{/each}}
+        </tr>
+    </thead>
+
+    {{!-- Body section --}}
+    <tbody>
+        {{#each Cities}}
+        <tr>
+            <td>{{this.cityname}}</td>
+            <td>{{this.attractions}}</td>
+        </tr>
+        {{/each}}
+    </tbody>
+</table>
+
+{{!-- Form to add a record to the table  --}}
+<h2>Add new cities here</h2>
+<p>To add a city, enter their information below and click "Submit".</p>
+<form id="add-city-form" method="POST" action="/add_new_city">
+  <legend><strong>Add a City</strong></legend>
+    <fieldset>
+        <label for="input-cityname">City Name </label>
+        <input type="text" name="input-cityname" id="input-cityname">
+        <label for="input-attractions">Attractions </label>
+        <input type="text" name="input-attractions" id="input-attractions">
+    </fieldset>
+    <input class="btn" type="submit" id="addCity" value="Add a City">
+</form>
+
+{{!-- Form to add a record to the table  --}}
+<h2>Update cities here</h2>
+<p>To update a city, enter their information below and click "Submit".</p>
+<form id="update-city-form" method="POST" action="/update_city">
+  <legend><strong>Update a City</strong></legend>
+    <fieldset>
+        <label for="update-ocityname">Old City Name </label>
+        <select name="update-ocityname" id="update-ocityname">
+        <option value="NULL"></option>
+        {{#each Cities}}
+          <option value="{{this.cityname}}">{{this.cityname}}</option>
+        {{/each}}
+        </select>
+        <label for="update-ncityname">New City Name </label>
+        <input type="text" name="update-ncityname" id="update-ncityname">
+        <label for="update-nattractions"> New Attractions </label>
+        <input type="text" name="update-nattractions" id="update-nattractions">
+    </fieldset>
+    <input class="btn" type="submit" id="updateCity" value="Update a City">
+</form>
+
+{{!-- Form to add a record to the table  --}}
+<h2>Delete cities here</h2>
+<p>To delete a city, enter their information below and click "Submit".</p>
+<form id="delete-city-form" method="POST" action="/delete_city">
+  <legend><strong>Delete a City</strong></legend>
+    <fieldset>
+        <label for="delete-cityname">City Name </label>
+        <select name="delete-cityname" id="delete-cityname">
+        <option value="NULL"></option>
+        {{#each Cities}}
+          <option value="{{this.cityname}}">{{this.cityname}}</option>
+        {{/each}}
+    </fieldset>
+    <input class="btn" type="submit" id="addCity" value="Delete a City">
+</form>

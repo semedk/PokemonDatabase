@@ -1,0 +1,184 @@
+<!-- pokemon.hbs -->
+<div id="browse" style="display: block">
+    <p><strong>Browse Pokemon</strong></p>
+    <table>
+
+        {{!-- Header section --}}
+        <thead>
+
+            {{!-- Print the album attributes --}}
+            <tr>
+
+                {{#each Pokemon.[0]}}
+                <th>
+                    {{@key}}
+                </th>
+                {{/each}}
+            </tr>
+        </thead>
+
+        {{!-- Body section --}}
+        <tbody>
+            {{#each Pokemon}}
+            <tr>
+                <td>{{this.pokedex_num}}</td>
+                <td>{{this.pokname}}</td>
+                <td>{{this.ev_yield}}</td>
+                <td>{{this.ability}}</td>
+                <td>{{this.types}}</td>
+                <td>{{this.generation}}</td>
+            </tr>
+            {{/each}}
+        </tbody>
+    </table>
+
+
+    {{!-- Search for Pokemonto the table  --}}
+    <h2>Search pokemon here</h2>
+    <p>To search for pokemon, enter their information below and click "Submit" To return to previous screen click on Pokemon Tab in the top of the screen.</p>
+    <form id="search-pok-form" method="POST" action="/search_pok" >
+        <legend><strong>Add a Pokemon</strong></legend>
+        <fieldset>
+            <label for="input-pname">Pokemon Name</label>
+            <input type="text" name="input-pname" id="input-pname">
+        </fieldset>
+        <input class="btn" type="submit" id="addPok1" value="Search Pokemon" >
+    </form>
+
+    {{!-- Form to add a record to the table  --}}
+    <h2>Add new pokemon here</h2>
+    <p>To add a pokemon, enter their information below and click "Submit".</p>
+    <form id="add-pok-form" method="POST" action="/add_new_pok">
+        <legend><strong>Add a Pokemon</strong></legend>
+        <fieldset>
+            <label for="input-pnum">Pokemon Num</label>
+            <input type="number" name="input-pnum" id="input-pnum">
+            <label for="input-pname">Pokemon Name</label>
+            <input type="text" name="input-pname" id="input-pname">
+            <label for="input-evy">Evolution Yield</label>
+            <select name="input-evya" id="input-evya">
+                <option value="NULL"></option>
+                {{#each Effort2}}
+                <option value="{{this}}">{{this}}</option>
+                {{/each}}
+            </select>
+            <select name="input-evyb" id="input-evyb">
+                <option value="NULL"></option>
+                {{#each Effort}}
+                <option value="{{this}}">{{this}}</option>
+                {{/each}}
+            </select>
+            <label for="input-ability">Ability</label>
+            <input type="text" name="input-ability" id="input-ability">
+        </fieldset>
+        <input class="btn" type="submit" id="addPok" value="Add a Pokemon">
+    </form>
+
+    <h2>Add pokemon and their type here</h2>
+    <p>To add pokemon and type, enter their information below and click "Submit".</p>
+    <form id="add-pokt-form" method="POST" action="/add_new_pokt">
+        <legend><strong>Add a Pokemon and their Type</strong></legend>
+        <fieldset>
+            <label for="input-pname">Pokemon Name</label>
+            <select name="input-pname" id="input-pname">
+                <option value="NULL"></option>
+                {{#each Pokemon}}
+                <option value="{{this.pokname}}">{{this.pokname}}</option>
+                {{/each}}
+            </select>
+            <label for="input-type">Type</label>
+            <select name="input-type" id="input-type">
+                <option value="NULL"></option>
+                {{#each Types}}
+                <option value="{{this.typename}}">{{this.typename}}</option>
+                {{/each}}
+            </select>
+            <label for="input-gen">Generation</label>
+            <select name="input-gen" id="input-gen">
+                <option value="NULL"></option>
+                {{#each Generation}}
+                <option value="{{this}}">{{this}}</option>
+                {{/each}}
+            </select>
+        </fieldset>
+        <input class="btn" type="submit" id="addPokT" value="Add a Pokemon Type">
+    </form>
+
+    <h2>Update a pokemon here</h2>
+    <p>To update a pokemon, enter their information below and click "Submit".</p>
+    <form id="update-pok-form" method="POST" action="/update_pok">
+        <legend><strong>update a Pokemon</strong></legend>
+        <fieldset>
+            <label for="update-pnumo">Pokemon Name</label>
+            <select name="update-pnumo" id="update-pnumo">
+                <option value="NULL"></option>
+                {{#each Pokemon}}
+                <option value="{{this.pokname}}">{{this.pokname}}</option>
+                {{/each}}
+            </select>            
+            <label for="update-pnamen">New Pokemon Name</label>
+            <input type="text" name="update-pnamen" id="update-pnamen">
+            <label for="update-evyn">New Evolution Yield</label>
+            <select name="update-evyna" id="update-evyna">
+                <option value="NULL"></option>
+                {{#each Effort2}}
+                <option value="{{this}}">{{this}}</option>
+                {{/each}}
+            </select>
+            <select name="update-evynb" id="update-evynb">
+                <option value="NULL"></option>
+                {{#each Effort}}
+                <option value="{{this}}">{{this}}</option>
+                {{/each}}
+            </select>
+            <label for="update-abilityn">New Ability</label>
+            <input type="text" name="update-abilityn" id="update-abilityn">
+        </fieldset>
+        <input class="btn" type="submit" id="updatePok" value="Update a Pokemon">
+    </form>
+
+    <h2>Update pokemon and their type here</h2>
+    <p>To update pokemon and type, enter their information below and click "Submit".</p>
+    <form id="update-pokt-form" method="POST" action="/update_pokt">
+        <legend><strong>Update a Pokemon and their Type</strong></legend>
+        <fieldset>
+            <label for="update-pnumo">Pokemon Name</label>
+            <select name="update-pnumo" id="update-pnumo">
+                <option value="NULL"></option>
+                {{#each Pokemon}}
+                <option value="{{this.pokname}}">{{this.pokname}}</option>
+                {{/each}}
+            </select>
+            <label for="update-typeo">New Type</label>
+            <select name="update-typeo" id="update-typeo">
+                <option value="NULL"></option>
+                {{#each Types}}
+                <option value="{{this.typename}}">{{this.typename}}</option>
+                {{/each}}
+            </select>
+            <label for="update-geno">New Generation</label>
+            <select name="update-geno" id="update-geno">
+                <option value="NULL"></option>
+                {{#each Generation}}
+                <option value="{{this}}">{{this}}</option>
+                {{/each}}
+            </select>
+        </fieldset>
+        <input class="btn" type="submit" id="updatePokT" value="Update a Pokemon Type">
+    </form>
+
+    <h2>Delete a pokemon here</h2>
+    <p>To delete a pokemon, enter their information below and click "Submit".</p>
+    <form id="del-pok-form" method="POST" action="/del_pok">
+        <legend><strong>Delete a Pokemon</strong></legend>
+        <fieldset>
+            <label for="del-pnum">Pokemon Name</label>
+            <select name="del-pnum" id="del-pnum">
+                <option value="NULL"></option>
+                {{#each Pokemon}}
+                <option value="{{this.pokname}}">{{this.pokname}}</option>
+                {{/each}}
+            </select>
+        </fieldset>
+        <input class="btn" type="submit" id="delPok" value="Delete a Pokemon">
+    </form>

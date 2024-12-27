@@ -1,0 +1,84 @@
+<!-- types.hbs -->
+<div id="browse" style="display: block">
+<p><strong>Browse Gym Leader Pokemon</strong></p>
+<table>
+
+    {{!-- Header section --}}
+    <thead>
+
+        {{!-- Print the album attributes --}}
+        <tr>
+
+            {{#each Types.[0]}}
+            <th>
+                {{@key}}
+            </th>
+            {{/each}}
+        </tr>
+    </thead>
+
+    {{!-- Body section --}}
+    <tbody>
+        {{#each Types}}
+        <tr>
+            <td>{{this.typename}}</td>
+            <td>{{this.color}}</td>
+            <td>{{this.description}}</td>
+        </tr>
+        {{/each}}
+    </tbody>
+</table>
+
+{{!-- Form to add a record to the table  --}}
+<h2>Add new types here</h2>
+<p>To add a type, enter their information below and click "Submit".</p>
+<form id="add-type-form" method="POST" action="/add_new_type">
+  <legend><strong>Add a Type</strong></legend>
+    <fieldset>
+        <label for="input-typename">Type Name </label>
+        <input type="text" name="input-typename" id="input-typename">
+        <label for="input-color">Color</label>
+        <input type="text" name="input-color" id="input-color">
+        <label for="input-desc">Description</label>
+        <input type="text" name="input-desc" id="input-desc">
+    </fieldset>
+    <input class="btn" type="submit" id="addType" value="Add a Type">
+</form>
+
+<h2>Update types here</h2>
+<p>To update a type, enter their information below and click "Submit".</p>
+<form id="update-type-form" method="POST" action="/update_type">
+  <legend><strong>Update a Type</strong></legend>
+    <fieldset>
+        <label for="update-type">Type</label>
+        <select name="update-type" id="update-type">
+            <option value="NULL"></option>
+            {{#each Types}}
+            <option value="{{this.typename}}">{{this.typename}}</option>
+            {{/each}}
+        </select>
+        <label for="update-color">New Color</label>
+        <input type="text" name="update-color" id="update-color">
+        <label for="update-desc">New Description</label>
+        <input type="text" name="update-desc" id="update-desc">
+    </fieldset>
+    <input class="btn" type="submit" id="updateType" value="Update a Type">
+</form>
+
+<h2>Delete types here</h2>
+<p>To delete a type, enter their information below and click "Submit".</p>
+<form id="del-type-form" method="POST" action="/del_type">
+  <legend><strong>Delete a Type</strong></legend>
+    <fieldset>
+        <label for="del-type">Delete Type</label>
+        <select name="del-type" id="del-type">
+            <option value="NULL"></option>
+            {{#each Types}}
+            <option value="{{this.typename}}">{{this.typename}}</option>
+            {{/each}}
+        </select>
+    </fieldset>
+    <input class="btn" type="submit" id="delType" value="Delete a Type">
+</form>
+
+
